@@ -37,9 +37,3 @@ Elle inclut des exemples concrets (curl / Postman), les règles de validation , 
 - Node.js 
 - Express.js 
 - MongoDB 
-
-
-## Compte Test
-
-Email : john@example.com
-Mot de passe : 123456
