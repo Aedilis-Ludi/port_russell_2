@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Catways</title>
+</head>
+<body>
+  <%- include('includes/header') %>
+
+  <main style="max-width:800px; margin:30px auto; font-family:Arial, sans-serif;">
+    <h1>Catways</h1>
+    <% if (catways.length === 0) { %>
+      <p>Aucun catway</p>
+    <% } %>
+    <% catways.forEach(c => { %>
+      <div style="border:1px solid #ccc; padding:8px; margin-bottom:6px;">
+        <div><strong>Catway <%= c.catwayNumber %></strong> (<%= c.type %>) - état : <%= c.catwayState %></div>
+        <div><a href="/catways/<%= c.catwayNumber %>">Détails / Réservations</a></div>
+      </div>
+    <% }) %>
+  </main>
+
+  <%- include('includes/footer') %>
+</body>
+</html>

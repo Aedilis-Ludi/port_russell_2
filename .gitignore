@@ -1,0 +1,30 @@
+# dépendances
+node_modules/
+
+# fichiers d'environnement secrets
+.env
+
+# cookies/test session
+cookies.txt
+
+# logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# éditeur / OS
+.vscode/
+.DS_Store
+Thumbs.db
+
+# coverage (si jamais tu ajoutes des tests plus tard)
+coverage/
+.nyc_output/
+
+# fichiers temporaires éventuels
+*.seed
+*.pid
+*.pid.lock
+
+# cache (si un jour tu en utilises)
+.cache/

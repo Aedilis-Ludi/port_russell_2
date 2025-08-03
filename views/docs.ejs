@@ -1,0 +1,82 @@
+<%- include('includes/header') %>
+
+<h1>Documentation de l'API</h1>
+
+<section>
+  <h2>Qu’est-ce que la documentation API ?</h2>
+  <p>
+    La documentation de l’API est un ensemble d’instructions qui indiquent aux développeurs et aux autres parties intéressées comment utiliser votre API et ses services pour une fin spécifique. 
+    Elle contient généralement des exemples de code, des tutoriels et des détails sur les fonctions, classes et types de retour. 
+    Elle fournit aux développeurs toutes les informations dont ils ont besoin pour construire des intégrations avec l’API et faire des appels API avec le logiciel.
+  </p>
+
+  <h2>Appels d’API</h2>
+  <p>
+    Les appels d’API sont des requêtes effectuées par un développeur ou une application vers l’API pour demander une action ou récupérer des données. 
+    La documentation indique exactement ce qu’on peut demander à l’API et comment le faire.
+  </p>
+
+  <h2>Pourquoi les API sont importantes</h2>
+  <p>
+    Les API permettent aux développeurs de réutiliser des solutions existantes au lieu de tout réécrire. 
+    Elles facilitent l’intégration de fonctionnalités externes dans une application. 
+    De nombreuses grandes plateformes (par exemple Twitter ou GitHub) exposent leurs services via des API.
+  </p>
+
+  <h2>Endpoints principaux</h2>
+  <ul>
+    <li><strong>POST /login</strong> — connexion via formulaire, pose un cookie HTTP-only <code>token</code>.</li>
+    <li><strong>POST /api/users/login</strong> — authentification API (JWT), renvoie un token JSON.</li>
+    <li><strong>GET /api/users/me</strong> — récupérer le profil de l’utilisateur connecté.</li>
+    <li><strong>GET /api/users</strong> — lister tous les utilisateurs (admin).</li>
+    <li><strong>POST /api/users</strong> — créer un utilisateur (admin).</li>
+    <li><strong>GET /api/users/:id</strong> — détail d’un utilisateur.</li>
+    <li><strong>PUT /api/users/:id</strong> / <strong>PATCH /api/users/:id</strong> — mettre à jour un utilisateur.</li>
+    <li><strong>DELETE /api/users/:id</strong> — supprimer un utilisateur.</li>
+    <li><strong>GET /api/catways</strong> — lister les catways.</li>
+    <li><strong>GET /api/catways/:catwayNumber</strong> — détail d’un catway.</li>
+    <li><strong>GET /api/reservations</strong> — lister les réservations.</li>
+    <li><strong>POST /api/reservations</strong> — créer une réservation.</li>
+    <li><strong>GET /api/reservations/:id</strong>, <strong>PUT/PATCH /api/reservations/:id</strong>, <strong>DELETE /api/reservations/:id</strong> — gestion d’une réservation.</li>
+  </ul>
+
+  <h2>Authentification</h2>
+  <p>Deux modes :</p>
+  <ul>
+    <li><strong>Formulaire web :</strong> <code>POST /login</code> avec <code>email</code> et <code>password</code> (form-urlencoded) → cookie <code>token</code> httpOnly posé automatiquement.</li>
+    <li><strong>API :</strong> <code>POST /api/users/login</code> avec JSON <code>{ "email": "...", "password": "..." }</code> → reçoit un JWT. Utiliser ensuite :</li>
+  </ul>
+  <pre><code>Authorization: Bearer &lt;token&gt;</code></pre>
+
+  <h2>Exemples</h2>
+
+  <h3>Connexion API (JWT)</h3>
+  <pre><code>POST /api/users/login
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "123456"
+}</code></pre>
+  <p>Réponse :</p>
+  <pre><code>{
+  "token": "eyJhbGciOiJI...",
+  "name": "john",
+  "email": "john@example.com"
+}</code></pre>
+
+  <h3>Appel protégé avec Bearer</h3>
+  <pre><code>GET /api/catways
+Authorization: Bearer eyJhbGciOiJI...</code></pre>
+
+  <h3>Appel protégé avec cookie (même origine)</h3>
+  <pre><code>GET /api/catways
+-- le cookie <strong>token</strong> est envoyé automatiquement par le navigateur après login via /login --</code></pre>
+
+  <p>Si l’authentification échoue, la réponse est typiquement :</p>
+  <pre><code>{
+  "message": "token_required"
+}</code></pre>
+</section>
+
+<%- include('includes/footer') %>

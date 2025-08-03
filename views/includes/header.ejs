@@ -1,0 +1,28 @@
+<header style="padding:10px; border-bottom:1px solid #ccc;">
+  <nav>
+    <a href="/" style="margin-right:15px;">Accueil / Connexion</a>
+    <a href="/dashboard" style="margin-right:15px;">Tableau de bord</a>
+    <a href="/catways" style="margin-right:15px;">Catways</a>
+    <a href="/users" style="margin-right:15px;">Utilisateurs</a>
+    <a href="/docs" style="margin-right:15px;">Documentation de l'API</a>
+    <button id="logoutBtn" style="float:right;">Déconnexion</button>
+  </nav>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('logoutBtn');
+    if (btn) {
+      btn.addEventListener('click', async () => {
+        try {
+          await fetch('/logout', { method: 'GET', credentials: 'include' });
+        } catch (e) {
+          
+        }
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        window.location = '/';
+      });
+    }
+  });
+</script>
