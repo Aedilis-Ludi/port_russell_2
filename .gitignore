@@ -4,7 +4,7 @@ node_modules/
 # fichiers d'environnement secrets
 .env
 
-# cookies/test session
+# cookies
 cookies.txt
 
 # logs
@@ -21,7 +21,7 @@ Thumbs.db
 coverage/
 .nyc_output/
 
-# fichiers temporaires éventuels
+# fichiers temporaires 
 *.seed
 *.pid
 *.pid.lock
